@@ -10,6 +10,6 @@ import java.util.Set;
 
 @Repository
 public interface BeverageRepository extends CrudRepository<Beverage,Integer> {
-    Beverage  findBeverageByName(String name);
-    Set<Beverage> findByNameIn(Set<String> stringSet);
+    Beverage  findByBeverageName(String name);
+    Set<Beverage> findByBeverageNameIn(Set<String> stringSet);
 }

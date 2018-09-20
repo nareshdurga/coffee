@@ -16,7 +16,7 @@ public class CustomerController {
   @GetMapping("v1/{name}/or/{mobile}")
   @ResponseBody
   public Customer getCustomer(@PathParam("name") String name, @PathParam("mobile") String mobile){
-      return customerService.findCustomerByNameOrMobile(name,mobile);
+      return customerService.findCustomerByFullNameOrMobile(name,mobile);
   }
 
   @PostMapping("/save")

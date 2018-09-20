@@ -1,94 +1,136 @@
 package com.cofeeshop.model;
 
-
-
-import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import javax.persistence.*;
+import java.util.Set;
 
+
+/**
+ * The persistent class for the customer database table.
+ * 
+ */
 @Entity
-
 public class Customer implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer customerId;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String mobile;
-    private String name;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="customer_id")
+	private int customerId;
 
-    @Temporal(TemporalType.DATE)
-    private Date createDate;
+	@Column(name="customer_type")
+	private String customerType;
 
-    @Temporal(TemporalType.DATE)
-    private  Date updateDate;
+	private String email;
 
-    public Date getCreateDate() {
-        return createDate;
-    }
+	@Column(name="first_name")
+	private String firstName;
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
+	@Column(name="full_name")
+	private String fullName;
 
-    public Date getUpdateDate() {
-        return updateDate;
-    }
+	@Column(name="last_name")
+	private String lastName;
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
+	private String mobile;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	//bi-directional many-to-many association to Beverage
+	@ManyToMany(mappedBy="customers")
+	private Set<Beverage> beverages;
 
-    public String getName() {
-        return name;
-    }
+	//bi-directional many-to-one association to Order
+	@OneToMany(mappedBy="customer")
+	private Set<Order> orders;
 
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
-    }
+	public Customer() {
+	}
 
-    public Integer getCustomerId() {
-        return customerId;
-    }
+	public int getCustomerId() {
+		return this.customerId;
+	}
 
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getCustomerType() {
+		return this.customerType;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public void setCustomerType(String customerType) {
+		this.customerType = customerType;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public String getEmail() {
+		return this.email;
+	}
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getFirstName() {
+		return this.firstName;
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public String getFullName() {
+		return this.fullName;
+	}
 
-    public String getMobile() {
-        return mobile;
-    }
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public String getLastName() {
+		return this.lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getMobile() {
+		return this.mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public Set<Beverage> getBeverages() {
+		return this.beverages;
+	}
+
+	public void setBeverages(Set<Beverage> beverages) {
+		this.beverages = beverages;
+	}
+
+	public Set<Order> getOrders() {
+		return this.orders;
+	}
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
+
+	public Order addOrder(Order order) {
+		getOrders().add(order);
+		order.setCustomer(this);
+
+		return order;
+	}
+
+	public Order removeOrder(Order order) {
+		getOrders().remove(order);
+		order.setCustomer(null);
+
+		return order;
+	}
+
 
 
 }

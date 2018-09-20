@@ -19,7 +19,7 @@ public class BeverageService {
     private BeverageRepository beverageRepository;
 
     public Beverage findBeverageByName(String name){
-        return beverageRepository.findBeverageByName(name);
+        return beverageRepository.findByBeverageName(name);
     }
 
     public void createBeverage(Beverage beverage){
@@ -27,7 +27,7 @@ public class BeverageService {
     }
 
     public void updateBeverage(Beverage beverage){
-        Beverage beverage1 = this.findBeverageByName(beverage.getName());
+        Beverage beverage1 = this.findBeverageByName(beverage.getBeverageName());
         beverage1.setBeverageType(beverage.getBeverageType());
         beverageRepository.save(beverage1);
     }
@@ -39,6 +39,6 @@ public class BeverageService {
 
     public Set<Beverage> findAllByName(Set<String> beverageName){
 
-       return beverageRepository.findByNameIn(beverageName);
+       return beverageRepository.findByBeverageNameIn(beverageName);
     }
 }

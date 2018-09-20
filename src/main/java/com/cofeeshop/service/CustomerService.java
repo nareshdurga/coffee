@@ -14,8 +14,8 @@ public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    public Customer findCustomerByNameOrMobile(String name, String mobile){
-        return customerRepository.findCustomerByNameOrMobile(name,mobile);
+    public Customer findCustomerByFullNameOrMobile(String name, String mobile){
+        return customerRepository.findCustomerByFullNameOrMobile(name,mobile);
     }
 
     public void createCustomer(Customer customer){
@@ -23,7 +23,7 @@ public class CustomerService {
     }
 
     public void updateCustomer(Customer customer){
-        Customer customer1 = this.findCustomerByNameOrMobile(customer.getName(),customer.getMobile());
+        Customer customer1 = this.findCustomerByFullNameOrMobile(customer.getFullName(),customer.getMobile());
         customer1.setFirstName(customer.getFirstName());
         customer1.setLastName(customer.getLastName());
         customer1.setMobile(customer.getMobile());
@@ -32,7 +32,7 @@ public class CustomerService {
     }
 
     public void removeCustomer(String name, String mobile){
-        Customer customer1 = this.findCustomerByNameOrMobile(name,mobile);
+        Customer customer1 = this.findCustomerByFullNameOrMobile(name,mobile);
         customerRepository.delete(customer1);
     }
 
