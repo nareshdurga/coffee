@@ -34,7 +34,7 @@ Beverage Controller - used to create/update/find/delete Beverage on rest ulr
 for reposiry class used to do CRUD operation
 
 
-#Test casses
+# Test casses
 
 -- for Controller can be used for restassured api for testing 
 -- for service mockito used to test functionaliy
