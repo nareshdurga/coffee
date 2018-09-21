@@ -18,15 +18,7 @@ public class Order implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int orderId;
-
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
-	}
-
-	public int getOrderId() {
-		return orderId;
-	}
+	private Integer orderId;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="order_date")
@@ -36,16 +28,14 @@ public class Order implements Serializable {
 	private BigDecimal totalAmount;
 
 
+	@Column(name = "quantity")
+	private Integer quantity;
+
+	@Column(name = "order_ref")
+	private  String orderRef;
+
+
 	private String order_status;
-
-
-	public void setOrder_status(String order_status) {
-		this.order_status = order_status;
-	}
-
-	public String getOrder_status() {
-		return order_status;
-	}
 
 	//bi-directional many-to-one association to Beverage
 	@ManyToOne
@@ -58,6 +48,37 @@ public class Order implements Serializable {
 	private Customer customer;
 
 	public Order() {
+	}
+
+
+
+	public void setOrder_status(String order_status) {
+		this.order_status = order_status;
+	}
+
+	public String getOrder_status() {
+		return order_status;
+	}
+
+
+	public void setOrderId(Integer orderId) {
+		this.orderId = orderId;
+	}
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+	public String getOrderRef() {
+		return orderRef;
+	}
+
+	public void setOrderRef(String orderRef) {
+		this.orderRef = orderRef;
 	}
 
 	public Date getOrderDate() {
@@ -90,6 +111,14 @@ public class Order implements Serializable {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
+	}
+
+	public int getOrderId() {
+		return orderId;
 	}
 
 }

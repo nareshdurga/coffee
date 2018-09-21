@@ -20,31 +20,36 @@ public class OrderController {
 
     @PostMapping("create/{custName}/or/{mobile}/{beverages}")
     public String placeOrder(@PathVariable("custName") String custName,@PathVariable("mobile") String mobile,@PathVariable("beverages") String names){
+        //TODO: can do with error code
+        try {
+            Set<String> stringSet = Stream.of(names.split(","))
+                    .map (elem -> new String(elem))
+                    .collect(Collectors.toSet());
 
-        Set<String> stringSet = Stream.of(names.split(","))
-                .map (elem -> new String(elem))
-                .collect(Collectors.toSet());
+            orderService.placeOrder(custName,mobile,stringSet);
+        } catch (Exception e) {
+            return  "failed";
+        }
 
-        orderService.placeOrder(custName,mobile,stringSet);
-
-
-
-
-        return  "";
+        return  "success";
     }
 
     @PutMapping("cancel/{custName}/or/{mobile}/{orders}")
     public String cancelOrder(@PathVariable("custName") String custName,@PathVariable("mobile") String mobile,@PathVariable("orders") String names){
+      //TODO: can do with error code
+
+        try {
+            Set<Integer> stringSet = Stream.of(names.split(","))
+                    .map (Integer::parseInt)
+                    .collect(Collectors.toSet());
+
+            orderService.cancelOrder(custName,mobile,stringSet);
+        } catch (Exception e) {
+            return  "failed";
+        }
 
 
-        Set<Integer> stringSet = Stream.of(names.split(","))
-                .map (Integer::parseInt)
-                .collect(Collectors.toSet());
-
-        orderService.cancelOrder(custName,mobile,stringSet);
-
-
-        return  "";
+        return  "success";
     }
 
 

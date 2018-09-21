@@ -3,6 +3,10 @@ package com.cofeeshop.controller;
 import com.cofeeshop.model.Beverage;
 import com.cofeeshop.model.Customer;
 import com.cofeeshop.service.BeverageService;
+import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
@@ -11,18 +15,35 @@ import javax.websocket.server.PathParam;
 @RequestMapping("/beverage/service")
 public class BeverageController {
 
+    private final static  Logger LOGGER = LoggerFactory.getLogger(BeverageController.class);
+    @Autowired
     private BeverageService beverageService;
 
     @GetMapping("/get/{name}")
     @ResponseBody
+    @ApiOperation(
+            value = "Find beverage  name",
+            notes = "Find beverage  name",
+            response = Beverage.class
+    )
     public Beverage getCustomer(@PathParam("name") String name){
         return beverageService.findBeverageByName(name);
     }
 
     @PostMapping("/save")
+    @ApiOperation(
+            value = "Find beverage  json string ",
+            notes = "Find beverage  input as json",
+            response = String.class
+    )
     public String createCustomer(@RequestBody Beverage beverage){
-        beverageService.createBeverage(beverage);
-        return "";
+        try {
+            beverageService.createBeverage(beverage);
+        } catch (Exception e) {
+            LOGGER.error(" error while creating customer {0}",e);
+           return "failed";
+        }
+        return "success";
     }
 
     @PutMapping("/update")
