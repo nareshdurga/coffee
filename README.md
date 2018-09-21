@@ -36,6 +36,6 @@ for reposiry class used to do CRUD operation
 
 # Test casses
 
--- for Controller can be used for restassured api for testing 
--- for service mockito used to test functionaliy
+*  for Controller can be used for restassured api for testing 
+* for service mockito used to test functionaliy
 
