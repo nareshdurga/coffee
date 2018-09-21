@@ -1,8 +1,8 @@
-"# coffee shop" 
+# coffee shop
 
 this project used to create beverage type and customer and order for coffee shop
 
-"# prerequired software"
+prerequired software
 
 1.jdk 1.8
 2.spring boot
