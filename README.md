@@ -28,7 +28,11 @@ Order Controller - this is accept order and cancel order based on order_ref or B
 
 Customer Controller - this is class used to create/update/remove/find  customer
 
-Beverage Controller - used to create/update/find/delete Beverage on rest ulr
+
+Beverage Controller - used to create/update/find/delete Beverage on rest uul
+for example 
+BeverageController
+
 # Repository 
 
 for reposiry class used to do CRUD operation
@@ -38,4 +42,10 @@ for reposiry class used to do CRUD operation
 
 *  for Controller can be used for restassured api for testing 
 * for service mockito used to test functionaliy
+
+
+
+for example:
+ * BeverageControllerTest
+* BeverageServiceTest
 
