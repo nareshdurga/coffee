@@ -29,9 +29,11 @@ Order Controller - this is accept order and cancel order based on order_ref or B
 Customer Controller - this is class used to create/update/remove/find  customer
 
 
-Beverage Controller - used to create/update/find/delete Beverage on rest uul
+Beverage Controller - used to create/update/find/delete Beverage on rest url
+
+
 for example 
-BeverageController
+*BeverageController
 
 # Repository 
 
